@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:root {
+  --hue: 210;
+  --saturation: 50%;
+  --background-color: hsl(var(--hue), var(--saturation), 20%);
+  --foreground-color: hsl(var(--hue), var(--saturation), 50%);
+  --score-color: hsl(var(--hue), calc(var(--saturation) - 20%), 50%);
+}
+body {
+  background-color: var(--background-color);
+  overflow: hidden;
+}
+.score {
+  display: flex;
+  font-weight: bold;
+  font-size: 4rem;
+  color: var(--score-color);
+}
+.player-score,
+.computer-score {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 0 1rem;
+}
+.player-score {
+  text-align: right;
+  border-right: 3px solid var(--score-color);
+}
+.ball {
+  --x: 50;
+  --y: 50;
+  position: absolute;
+  width: 2.5vh;
+  height: 2.5vh;
+  background-color: var(--foreground-color);
+  border-radius: 50%;
+  left: calc(var(--x) * 1vw);
+  top: calc(var(--y) * 1vh);
+  transform: translate(-50%, -50%);
+}
+.paddle {
+  position: absolute;
+  background-color: var(--foreground-color);
+  height: 15vh;
+  width: 2vh;
+  transform: translateY(-50%);
+}
+.paddle.left-paddle {
+  --position: 50;
+  left: 1vh;
+  top: calc(var(--position) * 1vh);
+}
+.paddle.right-paddle {
+  --position: 50;
+  right: 1vh;
+  top: calc(var(--position) * 1vh);
+}
